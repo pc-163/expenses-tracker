@@ -25,7 +25,7 @@ const ExpenseList = ({ data, setData, setEdit, setExpenseAmount, setExpense, set
                data.length <= 0 ? <p>No expenses</p>
                : data.map((item, index) => {
                     return (
-                        <div className="col-span-6 sticky bg-slate-50 p-4" key={index}>
+                        <div className="col-span-6 sticky bg-slate-50 p-4 mb-5 sm:mb-0" key={index}>
                             <p className='font-semibold text-1xl pb-3'>{item.expenseName} </p>
                             <p className='text-2xl pb-3 font-bold'>₹ <span className='text-orange-400'>{item.expenseAmount}</span></p>
                             

@@ -34,8 +34,6 @@ function App() {
   const yyyy = today.getFullYear();
   today = mm + '/' + dd + '/' + yyyy;
 
-  // const totalExpenses = data.reduce((total, expense) => total + parseFloat(expense.amount), 0);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (expenseName !== '' && expenseAmount > 0) {
@@ -52,28 +50,37 @@ function App() {
         setExpense("");
         setExpenseAmount("");
       }
-    }
+
+      setTimeout(() => {
+        const totalExpenses = data.reduce((total, expense) => total + parseFloat(expense.expenseAmount), 0);
+        if (data.length > 0) {
+          document.querySelector('.total-expenses').textContent = ` ₹ ${totalExpenses}`;
+        }
+        
+      }, 0);
+
   }
 
+}
   return (
     <>
       <div className="bg-emerald-700 py-2">
-        <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-white uppercase">
+        <h2 className="text-center sm:text-2xl font-bold leading-9 tracking-tight text-white uppercase">
           Daily Expenses Tracker
         </h2>
       </div>
-      <div className="container mx-auto px-32">
-        <div className="grid grid-cols-12 gap-6 pt-20">
+      <div className="container mx-auto md:px-6 lg:px-16 xl:px-32">
+        <div className="lg:grid grid-cols-12 gap-6 pt-5 px-5 sm:px-0 md:pt-10 lg:pt-20">
           <div className="col-span-4 sticky bg-slate-200 p-5">
             <div className="p-1 text-center font-semibold uppercase">
-            Add new transaction    
+              Add new transaction    
             </div>
             <ExpenseForm expenseName={expenseName} edit={edit} handleChange={handleChange} expenseAmount={expenseAmount} handleSubmit={handleSubmit} handleAmount={handleAmount} />
           </div>
           <div className="col-span-8">
-            <h2 className="bg-slate-200 px-5 py-2 font-semibold mb-5"> EXPENSE
-            <span className='text-red-600 font-semibold'>    ₹ 0.00</span></h2>
-            <div className="grid grid-cols-12 gap-4">
+            <h2 className="bg-slate-200 px-5 py-2 font-semibold mt-5 lg:mt-0 mb-5"> EXPENSE
+            <span className='text-red-600 font-semibold total-expenses'></span></h2>
+            <div className="md:grid grid-cols-12 gap-4">
               <ExpenseList data={data} edit={edit} setId={setId} setEdit={setEdit} setExpense={setExpense} setExpenseAmount={setExpenseAmount} setData={setData} />
             </div>
           </div>
