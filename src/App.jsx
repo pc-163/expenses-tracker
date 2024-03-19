@@ -11,23 +11,13 @@ const initialExpenses = localStorage.getItem('expenses')
 function App() {
   const [edit, setEdit] = useState(false);
   const [expenseName, setExpense] = useState('');
-<<<<<<< HEAD
   const [expenseAmount, setExpenseAmount] = useState();
-=======
-  const [expenseAmount, setExpenseAmount] = useState(0);
->>>>>>> dcc8351e5aac4576440adad777b98f4cc3c314f6
   const [data, setData] = useState(initialExpenses);
   const [mainid, setId] = useState(0);
-  const [totalExpenseAmount, setTotalExpenseAmount] = useState(
-    data.reduce(
-<<<<<<< HEAD
-      (total, expense) => total + parseFloat(expense.expenseAmount), 0));
-=======
-      (total, expense) => total + parseFloat(expense.expenseAmount),
-      0
-    )
-  );
->>>>>>> dcc8351e5aac4576440adad777b98f4cc3c314f6
+  
+  const calculateAmount = data.reduce((total, expense) => total + parseFloat(expense.expenseAmount), 0);
+  const [totalExpenseAmount, setTotalExpenseAmount] = useState(calculateAmount);
+    
 
   useEffect(() => {
     localStorage.setItem('expenses', JSON.stringify(data));
@@ -53,31 +43,19 @@ function App() {
     e.preventDefault();
     if (expenseName !== '' && expenseAmount > 0) {
       if (edit) {
-        let tempExpenses = data.map((item) => {
-          return item.id === mainid
-            ? { ...item, expenseName, expenseAmount }
-            : item;
-        });
-        setData(tempExpenses);
+        let tempExpenses = data.findIndex((item) => item.id === mainid);
+        data[tempExpenses] = { ...data[tempExpenses], expenseName, expenseAmount };
+        setTotalExpenseAmount(data.reduce((total, expense) => total + parseFloat(expense.expenseAmount), 0));
+        setData([...data]); //use (data) same [...data].  
         setExpense('');
         setExpenseAmount('');
         setEdit(false);
       } else {
         setData([...data, { id, expenseName, expenseAmount, today }]);
+        setTotalExpenseAmount(totalExpenseAmount + parseFloat(expenseAmount));
         setExpense('');
         setExpenseAmount('');
       }
-
-      // setTimeout(() => {
-      // const totalExpenses = data.reduce(
-      //   (total, expense) => total + parseFloat(expense.expenseAmount),
-      //   0
-      // );
-      // console.log(totalExpenses);
-      // if (data.length > 0) {
-      setTotalExpenseAmount(totalExpenseAmount + parseFloat(expenseAmount));
-      // }
-      // }, 0);
     }
   };
   return (
@@ -89,10 +67,8 @@ function App() {
       </div>
       <div className="container mx-auto md:px-6 lg:px-16 xl:px-32">
         <div className="lg:grid grid-cols-12 gap-6 pt-5 px-5 sm:px-0 md:pt-10 lg:pt-20">
-          <div className="col-span-4 sticky bg-slate-200 p-5">
-            <div className="p-1 text-center font-semibold uppercase">
-              Add new transaction
-            </div>
+          <div className="col-span-4">
+           
             <ExpenseForm
               expenseName={expenseName}
               edit={edit}
@@ -103,17 +79,10 @@ function App() {
             />
           </div>
           <div className="col-span-8">
-<<<<<<< HEAD
-            <h2 className="bg-slate-200 px-5 py-2 font-semibold mt-5 lg:mt-0 mb-5">EXPENSE
-              <span className="text-red-600 font-semibold total-expenses">
-              &nbsp;₹ {totalExpenseAmount}
-=======
             <h2 className="bg-slate-200 px-5 py-2 font-semibold mt-5 lg:mt-0 mb-5">
-              {' '}
               EXPENSE
               <span className="text-red-600 font-semibold total-expenses">
-                &nbsp; {totalExpenseAmount}
->>>>>>> dcc8351e5aac4576440adad777b98f4cc3c314f6
+                &nbsp; ₹ {totalExpenseAmount}
               </span>
             </h2>
             <div className="md:grid grid-cols-12 gap-4">
@@ -125,6 +94,8 @@ function App() {
                 setExpense={setExpense}
                 setExpenseAmount={setExpenseAmount}
                 setData={setData}
+                setTotalExpenseAmount={setTotalExpenseAmount}
+                expenseAmount={expenseAmount}
               />
             </div>
           </div>
@@ -134,8 +105,4 @@ function App() {
   );
 }
 
-<<<<<<< HEAD
 export default App;
-=======
-export default App;
->>>>>>> dcc8351e5aac4576440adad777b98f4cc3c314f6

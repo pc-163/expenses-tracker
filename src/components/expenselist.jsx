@@ -2,7 +2,7 @@ import React from 'react'
 import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 
-const ExpenseList = ({ data, setData, setEdit, setExpenseAmount, setExpense, setId }) => {
+const ExpenseList = ({ data, setData, setEdit, setExpenseAmount, setExpense, setId, setTotalExpenseAmount, expenseAmount }) => {
 
     const handleEdit = (id) => {
         const tempExpenses = data.find((item) => item.id === id);
@@ -13,16 +13,18 @@ const ExpenseList = ({ data, setData, setEdit, setExpenseAmount, setExpense, set
         setId(id);
     }
     const handleDelete = (id) => {
+        //const index = data.findIndex((item) => item.id === id);
         const tempExpenses = data.filter((item) => item.id !== id);
         setData(tempExpenses);
+        setTotalExpenseAmount(Math.abs(tempExpenses.reduce((total, expense) => total - parseFloat(expense.expenseAmount), 0)));
+        //console.log(tempExpenses, index);
         setEdit(false);
-        //console.log('delete');
     }
 
     return (
         <>
             {
-               data.length <= 0 ? <p>No expenses</p>
+               data.length <= 0 ? <div className="col-span-12">No expenses</div>
                : data.map((item, index) => {
                     return (
                         <div className="col-span-6 sticky bg-slate-50 p-4 mb-5 sm:mb-0" key={index}>

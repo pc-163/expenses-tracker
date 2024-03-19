@@ -8,7 +8,12 @@ const ExpenseForm = ({
 }) => {
   return (
     <>
-      <div className="mt-3">
+    <div className="bg-slate-200 p-5">
+    <div className="text-center font-semibold uppercase">
+    Add new transaction
+  </div>
+  
+      <div className="mt-5">
         <input
           type="text"
           name="expenseName"
@@ -19,7 +24,7 @@ const ExpenseForm = ({
           onChange={handleChange}
         />
       </div>
-      <div className="mt-3">
+      <div className="mt-5">
         <input
           placeholder="e.g. ₹ 100"
           name="expenseAmount"
@@ -28,15 +33,15 @@ const ExpenseForm = ({
           className="block w-full rounded-0 border py-3 px-4 sm:text-sm sm:leading-6"
           value={expenseAmount}
           onChange={handleAmount}
-          aria-controls="true"
         />
       </div>
       <button
         onClick={handleSubmit}
-        className="mt-3 flex w-full justify-center rounded-0 bg-orange-400 py-3 text-2xl font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        className="mt-5 flex w-full justify-center rounded-0 bg-orange-400 py-3 text-2xl font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
       >
         {edit ? 'Edit' : 'Submit'}
       </button>
+      </div>
     </>
   );
 };
