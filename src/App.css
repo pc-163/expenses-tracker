@@ -1,0 +1,10 @@
+.small_icon svg{
+    cursor: pointer;
+    font-size: 1.6rem;
+}
+.small_icon svg:first-child{
+    color: rgb(0, 181, 151);
+}
+.small_icon svg:last-child{
+    color: rgb(206, 12, 12);
+}
