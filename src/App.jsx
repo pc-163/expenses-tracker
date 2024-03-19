@@ -11,9 +11,23 @@ const initialExpenses = localStorage.getItem('expenses')
 function App() {
   const [edit, setEdit] = useState(false);
   const [expenseName, setExpense] = useState('');
-  const [expenseAmount, setExpenseAmount] = useState('');
+<<<<<<< HEAD
+  const [expenseAmount, setExpenseAmount] = useState();
+=======
+  const [expenseAmount, setExpenseAmount] = useState(0);
+>>>>>>> dcc8351e5aac4576440adad777b98f4cc3c314f6
   const [data, setData] = useState(initialExpenses);
   const [mainid, setId] = useState(0);
+  const [totalExpenseAmount, setTotalExpenseAmount] = useState(
+    data.reduce(
+<<<<<<< HEAD
+      (total, expense) => total + parseFloat(expense.expenseAmount), 0));
+=======
+      (total, expense) => total + parseFloat(expense.expenseAmount),
+      0
+    )
+  );
+>>>>>>> dcc8351e5aac4576440adad777b98f4cc3c314f6
 
   useEffect(() => {
     localStorage.setItem('expenses', JSON.stringify(data));
@@ -89,8 +103,19 @@ function App() {
             />
           </div>
           <div className="col-span-8">
-            <h2 className="bg-slate-200 px-5 py-2 font-semibold mt-5 lg:mt-0 mb-5"> EXPENSE
-            <span className='text-red-600 font-semibold total-expenses'></span></h2>
+<<<<<<< HEAD
+            <h2 className="bg-slate-200 px-5 py-2 font-semibold mt-5 lg:mt-0 mb-5">EXPENSE
+              <span className="text-red-600 font-semibold total-expenses">
+              &nbsp;₹ {totalExpenseAmount}
+=======
+            <h2 className="bg-slate-200 px-5 py-2 font-semibold mt-5 lg:mt-0 mb-5">
+              {' '}
+              EXPENSE
+              <span className="text-red-600 font-semibold total-expenses">
+                &nbsp; {totalExpenseAmount}
+>>>>>>> dcc8351e5aac4576440adad777b98f4cc3c314f6
+              </span>
+            </h2>
             <div className="md:grid grid-cols-12 gap-4">
               <ExpenseList
                 data={data}
@@ -109,4 +134,8 @@ function App() {
   );
 }
 
-export default App
+<<<<<<< HEAD
+export default App;
+=======
+export default App;
+>>>>>>> dcc8351e5aac4576440adad777b98f4cc3c314f6
