@@ -60,15 +60,16 @@ function App() {
         setExpenseAmount('');
       }
 
-      setTimeout(() => {
-        const totalExpenses = data.reduce(
-          (total, expense) => total + parseFloat(expense.expenseAmount),
-          0
-        );
-        if (data.length > 0) {
-          setTotalExpenseAmount(totalExpenses);
-        }
-      }, 0);
+      // setTimeout(() => {
+      // const totalExpenses = data.reduce(
+      //   (total, expense) => total + parseFloat(expense.expenseAmount),
+      //   0
+      // );
+      // console.log(totalExpenses);
+      // if (data.length > 0) {
+      setTotalExpenseAmount(totalExpenseAmount + parseFloat(expenseAmount));
+      // }
+      // }, 0);
     }
   };
   return (
@@ -98,7 +99,7 @@ function App() {
               {' '}
               EXPENSE
               <span className="text-red-600 font-semibold total-expenses">
-                {totalExpenseAmount}
+                &nbsp; {totalExpenseAmount}
               </span>
             </h2>
             <div className="md:grid grid-cols-12 gap-4">
