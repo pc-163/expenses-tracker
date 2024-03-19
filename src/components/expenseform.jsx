@@ -23,6 +23,7 @@ const ExpenseForm = ({ expenseName, handleChange, expenseAmount, handleSubmit, h
           className="block w-full rounded-0 border py-3 px-4 sm:text-sm sm:leading-6"
           value={expenseAmount}
           onChange={handleAmount}
+          aria-controls="true"
         />
       </div>
       <button
