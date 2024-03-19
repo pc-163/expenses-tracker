@@ -26,7 +26,7 @@ const ExpenseForm = ({
       </div>
       <div className="mt-5">
         <input
-          placeholder="e.g. ₹ 100"
+          placeholder="e.g. ₹ 10000"
           name="expenseAmount"
           id="amount"
           type="number"
