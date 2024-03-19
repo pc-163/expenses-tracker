@@ -1,6 +1,11 @@
-
-const ExpenseForm = ({ expenseName, handleChange, expenseAmount, handleSubmit, handleAmount, edit }) => {
-
+const ExpenseForm = ({
+  expenseName,
+  handleChange,
+  expenseAmount,
+  handleSubmit,
+  handleAmount,
+  edit,
+}) => {
   return (
     <>
       <div className="mt-3">

@@ -11,12 +11,9 @@ const initialExpenses = localStorage.getItem('expenses')
 function App() {
   const [edit, setEdit] = useState(false);
   const [expenseName, setExpense] = useState('');
-  const [expenseAmount, setExpenseAmount] = useState();
+  const [expenseAmount, setExpenseAmount] = useState('');
   const [data, setData] = useState(initialExpenses);
   const [mainid, setId] = useState(0);
-  const [totalExpenseAmount, setTotalExpenseAmount] = useState(
-    data.reduce(
-      (total, expense) => total + parseFloat(expense.expenseAmount), 0));
 
   useEffect(() => {
     localStorage.setItem('expenses', JSON.stringify(data));
@@ -92,11 +89,8 @@ function App() {
             />
           </div>
           <div className="col-span-8">
-            <h2 className="bg-slate-200 px-5 py-2 font-semibold mt-5 lg:mt-0 mb-5">EXPENSE
-              <span className="text-red-600 font-semibold total-expenses">
-              &nbsp;₹ {totalExpenseAmount}
-              </span>
-            </h2>
+            <h2 className="bg-slate-200 px-5 py-2 font-semibold mt-5 lg:mt-0 mb-5"> EXPENSE
+            <span className='text-red-600 font-semibold total-expenses'></span></h2>
             <div className="md:grid grid-cols-12 gap-4">
               <ExpenseList
                 data={data}
@@ -115,4 +109,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
